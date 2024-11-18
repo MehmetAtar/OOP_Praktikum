@@ -48,7 +48,10 @@ public class MoebelhausControl {
     
     public void leseAusDateien(String typ) {
     	try {
-			model.leseAusDatei(typ);
+    		if(typ.contentEquals("csv"))
+    			model.leseAusDateiCSV(typ);
+    		else
+    			model.leseAusDateiTXT(typ);
 		} catch(IOException exc){
 			view.zeigeFehlermeldungsfensterAn(
 				"IOException beim Lesen!");

@@ -1,12 +1,14 @@
 package business;
 
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
 import gui.MoebelhausControl;
+import reader.ConcreteCSVReaderCreator;
+import reader.ConcreteTXTReaderCreator;
+import reader.ReaderCreator;
+import reader.ReaderProduct;
 
 public class MoebelhausModel {
 	private MoebelhausControl control;
@@ -26,22 +28,40 @@ public class MoebelhausModel {
 		System.out.println(moebelstueck.gibMoebelstueckZurueck(';'));
 	}
 	
-	public void leseAusDatei(String typ) throws IOException{
-  		if("csv".equals(typ)){
-  			BufferedReader ein = new BufferedReader(new FileReader("MoebelstueckeAusgabe.csv"));
-  			String[] zeile = ein.readLine().split(";");
-  			this.moebelstueck = new Moebelstueck(
-  				zeile[0], 
-  				Float.parseFloat(zeile[1]), 
-  				zeile[2], 
-  				Float.parseFloat(zeile[3]), 
-  				zeile[4].split("_"));
-  			control.getView().zeigeInformationsfensterAn("Die Moebelhaeuser wurden gelesen!");
-  		}
-   		else{
-   			control.getView().zeigeInformationsfensterAn("Noch nicht implementiert!");
-   		}
+	public void leseAusDateiCSV(String typ) throws IOException{
+
+//  		BufferedReader ein = new BufferedReader(new FileReader("MoebelstueckeAusgabe.csv"));
+// 			String[] zeile = ein.readLine().split(";");
+		ReaderCreator creator = new ConcreteCSVReaderCreator();
+		ReaderProduct product = creator.factoryMethod();
+		String[] zeile = product.leseAusDatei();
+		
+		this.moebelstueck = new Moebelstueck( 
+			zeile[0], 
+			Float.parseFloat(zeile[1]), 
+			zeile[2], 
+			Float.parseFloat(zeile[3]), 
+			zeile[4].split("_"));
+		control.getView().zeigeInformationsfensterAn("Die Moebelhaeuser wurden gelesen! CSV");
+  	}
+	
+	
+	public void leseAusDateiTXT(String typ) throws IOException{
+		
+		ReaderCreator creator = new ConcreteTXTReaderCreator();
+		ReaderProduct product = creator.factoryMethod();
+		String[] zeile = product.leseAusDatei();
+		
+		this.moebelstueck = new Moebelstueck( 
+			zeile[0], 
+			Float.parseFloat(zeile[1]), 
+			zeile[2], 
+			Float.parseFloat(zeile[3]), 
+			zeile[4].split("_"));
+		control.getView().zeigeInformationsfensterAn("Die Moebelhaeuser wurden gelesen! TXT");
 	}
+
+
 		
 	
     
