@@ -7,10 +7,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import gui.MoebelhausControl;
-import gui.MoebelhausView;
 
 public class MoebelhausModel {
-	private MoebelhausView view;
 	private MoebelhausControl control;
     private Moebelstueck moebelstueck;
     
@@ -20,30 +18,28 @@ public class MoebelhausModel {
 
 
 	public void schreibeMoebelstueckInCsvDatei() throws IOException{
-		BufferedWriter aus 
-			= new BufferedWriter(new FileWriter("MoebelstueckeAusgabe.csv", false));
+		BufferedWriter aus = new BufferedWriter(new FileWriter("MoebelstueckeAusgabe.csv", false));
 		aus.write(moebelstueck.gibMoebelstueckZurueck(';'));
 		aus.close();
-		view.zeigeInformationsfensterAn(
+		control.getView().zeigeInformationsfensterAn(
    			"Das Moebelhaus wurden gespeichert!");
 		System.out.println(moebelstueck.gibMoebelstueckZurueck(';'));
 	}
 	
 	public void leseAusDatei(String typ) throws IOException{
   		if("csv".equals(typ)){
-  			BufferedReader ein = new BufferedReader(new FileReader("Moebelstueck.csv"));
+  			BufferedReader ein = new BufferedReader(new FileReader("MoebelstueckeAusgabe.csv"));
   			String[] zeile = ein.readLine().split(";");
-  			this.moebelstueck = new Moebelstueck(zeile[0], 
+  			this.moebelstueck = new Moebelstueck(
+  				zeile[0], 
   				Float.parseFloat(zeile[1]), 
-  				Float.parseFloat(zeile[2]), 
-  				zeile[3], zeile[4].split("_"));
-  				ein.close();
-  	  			view.zeigeInformationsfensterAn(
-  	  	   			"Die Bürgerämter wurden gelesen!");
+  				zeile[2], 
+  				Float.parseFloat(zeile[3]), 
+  				zeile[4].split("_"));
+  			control.getView().zeigeInformationsfensterAn("Die Moebelhaeuser wurden gelesen!");
   		}
    		else{
-   			view.zeigeInformationsfensterAn(
-   				"Noch nicht implementiert!");
+   			control.getView().zeigeInformationsfensterAn("Noch nicht implementiert!");
    		}
 	}
 		

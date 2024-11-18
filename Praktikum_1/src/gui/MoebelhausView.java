@@ -25,16 +25,16 @@ public class MoebelhausView {
     private Pane pane     					= new  Pane();
     private Label lblEingabe    	 		= new Label("Eingabe");
     private Label lblAnzeige   	 	    	= new Label("Anzeige");
-    private Label lblName 					= new Label("Name:");
-    private Label lblGeoeffnetVon   		= new Label("Wohnraum:");
-    private Label lblGeoeffnetBis  	 		= new Label("Stil:");
-    private Label lblStrasseHNr   			= new Label("Preis:");
-    private Label lblDienstleistungen  		= new Label("Materialien:");
+    private Label name 						= new Label("Name:");
+    private Label wohnraum			   		= new Label("Wohnraum:");
+    private Label stil  	 				= new Label("Stil:");
+    private Label preis   					= new Label("Preis:");
+    private Label material			  		= new Label("Materialien:");
     private TextField txtName 	 			= new TextField();
-    private TextField txtGeoeffnetVon		= new TextField();
-    private TextField txtGeoeffnetBis		= new TextField();
-    private TextField txtStrasseHNr			= new TextField();
-    private TextField txtDienstleistungen	= new TextField();
+    private TextField txtwohnraum			= new TextField();
+    private TextField txtstil				= new TextField();
+    private TextField txtpreis				= new TextField();
+    private TextField txtmaterial			= new TextField();
     private TextArea txtAnzeige  			= new TextArea();
     private Button btnEingabe 		 		= new Button("Eingabe");
     private Button btnAnzeige 		 		= new Button("Anzeige");
@@ -71,39 +71,47 @@ public class MoebelhausView {
     	lblAnzeige.setLayoutY(40);
       	lblAnzeige.setFont(font);
        	lblAnzeige.setStyle("-fx-font-weight: bold;"); 
-       	lblName.setLayoutX(20);
-    	lblName.setLayoutY(90);
-    	lblGeoeffnetVon.setLayoutX(20);
-    	lblGeoeffnetVon.setLayoutY(130);
-    	lblGeoeffnetBis.setLayoutX(20);
-    	lblGeoeffnetBis.setLayoutY(170);
-    	lblStrasseHNr.setLayoutX(20);
-    	lblStrasseHNr.setLayoutY(210);
-    	lblDienstleistungen.setLayoutX(20);
-    	lblDienstleistungen.setLayoutY(250);    	
-       	pane.getChildren().addAll(lblEingabe, lblAnzeige, 
-       		lblName, lblGeoeffnetVon, lblGeoeffnetBis,
-       		lblStrasseHNr, lblDienstleistungen);
+       	name.setLayoutX(20);
+    	name.setLayoutY(90);
+    	wohnraum.setLayoutX(20);
+    	wohnraum.setLayoutY(130);
+    	stil.setLayoutX(20);
+    	stil.setLayoutY(170);
+    	preis.setLayoutX(20);
+    	preis.setLayoutY(210);
+    	material.setLayoutX(20);
+    	material.setLayoutY(250);    	
+       	pane.getChildren().addAll(
+       		lblEingabe, 
+       		lblAnzeige, 
+       		name, 
+       		wohnraum, 
+       		stil,
+       		preis, 
+       		material);
     
     	// Textfelder
      	txtName.setLayoutX(170);
     	txtName.setLayoutY(90);
     	txtName.setPrefWidth(200);
-    	txtGeoeffnetVon.setLayoutX(170);
-    	txtGeoeffnetVon.setLayoutY(130);
-    	txtGeoeffnetVon.setPrefWidth(200);
-    	txtGeoeffnetBis.setLayoutX(170);
-    	txtGeoeffnetBis.setLayoutY(170);
-    	txtGeoeffnetBis.setPrefWidth(200);
-      	txtStrasseHNr.setLayoutX(170);
-    	txtStrasseHNr.setLayoutY(210);
-    	txtStrasseHNr.setPrefWidth(200);
-    	txtDienstleistungen.setLayoutX(170);
-    	txtDienstleistungen.setLayoutY(250);
-    	txtDienstleistungen.setPrefWidth(200);
+    	txtwohnraum.setLayoutX(170);
+    	txtwohnraum.setLayoutY(130);
+    	txtwohnraum.setPrefWidth(200);
+    	txtstil.setLayoutX(170);
+    	txtstil.setLayoutY(170);
+    	txtstil.setPrefWidth(200);
+      	txtpreis.setLayoutX(170);
+    	txtpreis.setLayoutY(210);
+    	txtpreis.setPrefWidth(200);
+    	txtmaterial.setLayoutX(170);
+    	txtmaterial.setLayoutY(250);
+    	txtmaterial.setPrefWidth(200);
       	pane.getChildren().addAll( 
-     		txtName, txtGeoeffnetVon, txtGeoeffnetBis,
-     		txtStrasseHNr, txtDienstleistungen);
+     		txtName, 
+     		txtwohnraum, 
+     		txtstil,
+     		txtpreis, 
+     		txtmaterial);
      	
         // Textbereich	
         txtAnzeige.setEditable(false);
@@ -191,36 +199,36 @@ public class MoebelhausView {
 		this.txtName = txtName;
 	}
 
-	public TextField getTxtGeoeffnetVon() {
-		return txtGeoeffnetVon;
+	public TextField getTxtwohnraum() {
+		return txtwohnraum;
 	}
 
-	public void setTxtGeoeffnetVon(TextField txtGeoeffnetVon) {
-		this.txtGeoeffnetVon = txtGeoeffnetVon;
+	public void setTxtwohnraum(TextField txtwohnraum) {
+		this.txtwohnraum = txtwohnraum;
 	}
 
-	public TextField getTxtGeoeffnetBis() {
-		return txtGeoeffnetBis;
+	public TextField getTxtstil() {
+		return txtstil;
 	}
 
-	public void setTxtGeoeffnetBis(TextField txtGeoeffnetBis) {
-		this.txtGeoeffnetBis = txtGeoeffnetBis;
+	public void setTxtGeoeffnetBis(TextField txtstil) {
+		this.txtstil = txtstil;
 	}
 
-	public TextField getTxtStrasseHNr() {
-		return txtStrasseHNr;
+	public TextField getTxtpreis() {
+		return txtpreis;
 	}
 
-	public void setTxtStrasseHNr(TextField txtStrasseHNr) {
-		this.txtStrasseHNr = txtStrasseHNr;
+	public void setTxtpreis(TextField txtpreis) {
+		this.txtpreis = txtpreis;
 	}
 
-	public TextField getTxtDienstleistungen() {
-		return txtDienstleistungen;
+	public TextField getTxtmaterial() {
+		return txtmaterial;
 	}
 
-	public void setTxtDienstleistungen(TextField txtDienstleistungen) {
-		this.txtDienstleistungen = txtDienstleistungen;
+	public void setTxtmaterial(TextField txtmaterial) {
+		this.txtmaterial = txtmaterial;
 	}
 
 }

@@ -7,7 +7,7 @@ import business.Moebelstueck;
 import javafx.stage.Stage;
 
 public class MoebelhausControl {
-	
+
 	private MoebelhausView view;
 	private MoebelhausModel model;
 	
@@ -22,10 +22,10 @@ public class MoebelhausControl {
     	try{
     		model.setMoebelstueck(new Moebelstueck(
     			view.getTxtName().getText(), 
-   	            Float.parseFloat(view.getTxtGeoeffnetVon().getText()),
-   	            Float.parseFloat(view.getTxtGeoeffnetBis().getText()),
-    		    view.getTxtStrasseHNr().getText(),
-    		    view.getTxtDienstleistungen().getText().split(";")));
+   	            Float.parseFloat(view.getTxtwohnraum().getText()),
+   	            view.getTxtstil().getText(),
+    		    Float.parseFloat(view.getTxtpreis().getText()),
+    		    view.getTxtmaterial().getText().split(";")));
     		view.zeigeInformationsfensterAn("Das Moebelhaus wurde aufgenommen!");
        	}
        	catch(Exception exc){
@@ -58,6 +58,21 @@ public class MoebelhausControl {
 		}
     }
     
+	public MoebelhausView getView() {
+		return view;
+	}
+
+	public void setView(MoebelhausView view) {
+		this.view = view;
+	}
+
+	public MoebelhausModel getModel() {
+		return model;
+	}
+
+	public void setModel(MoebelhausModel model) {
+		this.model = model;
+	}
     
     
     

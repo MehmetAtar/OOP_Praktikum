@@ -5,20 +5,20 @@ public class Moebelstueck {
 	// Name des Buergeramtes
     private String name;
     // Oeffnungszeiten
-    private float geoeffnetVon;
-    private float geoeffnetBis;
+    private float wohnraum;
+    private String stil;
     // Strasse und Hausnummer des Buergeramtes
-    private String strasseHNr;
+    private float preis;
     // Dienstleistungen des Buergeramtes
-    private String[] dienstleistungen;
+    private String[] material;
 
-    public Moebelstueck(String name, float geoeffnetVon, float geoeffnetBis,
-    	String strasseHNr, String[] dienstleistungen){
+    public Moebelstueck(String name, float wohnraum, String stil,
+    	float preis, String[] material){
    		this.name = name;
-  	    this.geoeffnetVon = geoeffnetVon;
-   	    this.geoeffnetBis = geoeffnetBis;
-   	    this.strasseHNr = strasseHNr;
-   	    this.dienstleistungen = dienstleistungen;
+  	    this.wohnraum = wohnraum;
+   	    this.stil = stil;
+   	    this.preis = preis;
+   	    this.material = material;
     }
     
 	public String getName() {
@@ -29,53 +29,53 @@ public class Moebelstueck {
 		this.name = name;
 	}
 
-	public float getGeoeffnetVon() {
-		return geoeffnetVon;
+	public float getWohnraum() {
+		return wohnraum;
 	}
 
-	public void setGeoeffnetVon(float geoeffnetVon) {
-		this.geoeffnetVon = geoeffnetVon;
+	public void setWohnraum(float geoeffnetVon) {
+		this.wohnraum = geoeffnetVon;
 	}
 
-	public float getGeoeffnetBis() {
-		return geoeffnetBis;
+	public String getStil() {
+		return stil;
 	}
 
-	public void setGeoeffnetBis(float geoeffnetBis) {
-		this.geoeffnetBis = geoeffnetBis;
+	public void setStil(String stil) {
+		this.stil = stil;
 	}
 
-	public String getStrasseHNr() {
-		return strasseHNr;
+	public float getPreis() {
+		return preis;
 	}
 
-	public void setStrasseHNr(String strasseHNr) {
-		this.strasseHNr = strasseHNr;
+	public void setStrasseHNr(float preis) {
+		this.preis = preis;
 	}
 
-	public String[] getDienstleistungen() {
-		return dienstleistungen;
+	public String[] getMaterial() {
+		return material;
 	}
 
-	public void setDienstleistungen(String[] dienstleistungen) {
-		this.dienstleistungen = dienstleistungen;
+	public void setMaterial(String[] material) {
+		this.material = material;
 	}
 	
-	public String getDienstleistungenAlsString(char trenner) {
+	public String getMaterialAlsString(char trenner) {
 		String ergebnis = "";
 		int i = 0;
-		for(i = 0; i < this.getDienstleistungen().length - 1; i++) {
-			ergebnis = ergebnis + this.getDienstleistungen()[i] + trenner; 
+		for(i = 0; i < this.getMaterial().length - 1; i++) {
+			ergebnis = ergebnis + this.getMaterial()[i] + trenner; 
 		}
-		return ergebnis	+ this.getDienstleistungen()[i];
+		return ergebnis	+ this.getMaterial()[i];
 	}
 	
 	public String gibMoebelstueckZurueck(char trenner){
   		return this.getName() + trenner 
-  			+ this.getGeoeffnetVon() + trenner
-  		    + this.getGeoeffnetBis() + trenner
-  		    + this.getStrasseHNr() + trenner + "\n"
-  		    + this.getDienstleistungenAlsString(trenner) + "\n";
-  	}
+  			+ this.getWohnraum() + trenner
+  		    + this.getStil() + trenner
+  		    + this.getPreis() + trenner 
+  		    + this.getMaterialAlsString(trenner); 
+	}
 }
 
