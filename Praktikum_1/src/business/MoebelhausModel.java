@@ -5,7 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Vector;
 
-import guiMoebelhaus.MoebelhausControl;
+import gui.guiMoebelhaus.MoebelhausControl;
 import jdk.nashorn.internal.objects.annotations.Constructor;
 import ownUtil.Observer;
 import reader.ConcreteCSVReaderCreator;

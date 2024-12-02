@@ -1,4 +1,4 @@
-package guiMoebelhaus;
+package gui.guiMoebelhaus;
 
 import java.io.IOException;
 
