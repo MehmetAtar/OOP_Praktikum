@@ -1,4 +1,4 @@
-package gui;
+package guiMoebelhaus;
 
 import java.io.IOException;
 
@@ -13,7 +13,9 @@ public class MoebelhausControl {
 	
     public MoebelhausControl(Stage stage) {
 		super();
-		this.model = new MoebelhausModel(this);
+		// change model Object with new Singleton Method
+		this.model = MoebelhausModel.getInstance();
+		this.model.setControl(this);
 		this.view = new MoebelhausView(stage, this, model);
 	
 	}

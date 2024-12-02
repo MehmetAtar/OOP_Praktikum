@@ -3,22 +3,59 @@ package business;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Vector;
 
-import gui.MoebelhausControl;
+import guiMoebelhaus.MoebelhausControl;
+import jdk.nashorn.internal.objects.annotations.Constructor;
+import ownUtil.Observer;
 import reader.ConcreteCSVReaderCreator;
 import reader.ConcreteTXTReaderCreator;
 import reader.ReaderCreator;
 import reader.ReaderProduct;
 
-public class MoebelhausModel {
+public class MoebelhausModel implements ownUtil.Observable{
+	
 	private MoebelhausControl control;
     private Moebelstueck moebelstueck;
+    // add attribute for Singleton
+    private static MoebelhausModel modelInstance;
     
-    public MoebelhausModel(MoebelhausControl control) {
-    	this.setControl(control);
+    // add static method to access the Object
+    public static MoebelhausModel getInstance() {
+    	if(modelInstance == null)
+    		modelInstance = new MoebelhausModel();
+    	return modelInstance;
+    }
+    // private Constructor -> no new Objects of this class
+    private MoebelhausModel() {
+    	super();
+    }
+    
+    // add a new Observer Array using Vector
+    private Vector<Observer> observers = new Vector<Observer>();
+    
+    // inteface Methods 
+	@Override
+	public void addObserver(Observer obs) {
+		// add an Observer element to the Vector
+		observers.addElement(obs);
 	}
-
-
+	@Override
+	public void removeObserver(Observer obs) {
+		// remove an Observer element from the Vector
+		observers.removeElement(obs);
+	}
+	@Override
+	public void notifyObserver() {
+		// update each element of observers
+		for (int i = 0; i < observers.size(); i++) {
+			observers.elementAt(i).update();
+		}
+	}
+    
+    
+    
+    
 	public void schreibeMoebelstueckInCsvDatei() throws IOException{
 		BufferedWriter aus = new BufferedWriter(new FileWriter("MoebelstueckeAusgabe.csv", false));
 		aus.write(moebelstueck.gibMoebelstueckZurueck(';'));
@@ -43,6 +80,7 @@ public class MoebelhausModel {
 			Float.parseFloat(zeile[3]), 
 			zeile[4].split("_"));
 		control.getView().zeigeInformationsfensterAn("Die Moebelhaeuser wurden gelesen! CSV");
+		notifyObserver();
   	}
 	
 	
@@ -59,6 +97,7 @@ public class MoebelhausModel {
 			Float.parseFloat(zeile[3]), 
 			zeile[4].split("_"));
 		control.getView().zeigeInformationsfensterAn("Die Moebelhaeuser wurden gelesen! TXT");
+		notifyObserver();
 	}
 
 
@@ -82,6 +121,5 @@ public class MoebelhausModel {
 	public void setControl(MoebelhausControl control) {
 		this.control = control;
 	}
-    
-    
+
 }

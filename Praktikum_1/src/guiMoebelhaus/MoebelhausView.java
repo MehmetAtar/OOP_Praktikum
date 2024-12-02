@@ -1,4 +1,4 @@
-package gui;
+package guiMoebelhaus;
 
 
 import business.MoebelhausModel;
@@ -18,8 +18,23 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import ownUtil.MeldungsfensterAnzeiger;
+import ownUtil.Observer;
 
-public class MoebelhausView {
+public class MoebelhausView implements Observer{
+
+	// interface Method -> same content as the Method zeigeMoebelstueckAn
+		// also called the Method in an setOnAction and one initListener
+	@Override
+	public void update() {
+		if(this.model.getMoebelstueck() != null){
+    		txtAnzeige.setText(
+    			this.model.getMoebelstueck().gibMoebelstueckZurueck(' '));
+    	}
+    	else{
+    		zeigeInformationsfensterAn("Bisher wurde kein Moebelhaus aufgenommen!");
+    	}
+	}
+
     
 	//---Anfang Attribute der grafischen Oberflaeche---
     private Pane pane     					= new  Pane();
@@ -58,6 +73,8 @@ public class MoebelhausView {
     	primaryStage.show();
     	this.initKomponenten();
 		this.initListener();
+		// add this Object to Observer of model
+		this.model.addObserver(this);
     }
     
     private void initKomponenten(){
@@ -142,12 +159,12 @@ public class MoebelhausView {
             @Override
             public void handle(ActionEvent e) {
         	    control.nehmeMoebelstueckAuf();
+	            model.notifyObserver();
             }
 	    });
 	    btnAnzeige.setOnAction(new EventHandler<ActionEvent>() {
 	    	@Override
 	        public void handle(ActionEvent e) {
-	            zeigeMoebelstueckAn();
 	        } 
    	    });
 	    mnItmCsvImport.setOnAction(new EventHandler<ActionEvent>() {
@@ -169,16 +186,16 @@ public class MoebelhausView {
 			}	
 	    });
     }
-    
-    private void zeigeMoebelstueckAn(){
-    	if(this.model.getMoebelstueck() != null){
-    		txtAnzeige.setText(
-    			this.model.getMoebelstueck().gibMoebelstueckZurueck(' '));
-    	}
-    	else{
-    		zeigeInformationsfensterAn("Bisher wurde kein Moebelhaus aufgenommen!");
-    	}
-    }    
+    // is replaced with the update method from the interface
+//    private void zeigeMoebelstueckAn(){
+//    	if(this.model.getMoebelstueck() != null){
+//    		txtAnzeige.setText(
+//    			this.model.getMoebelstueck().gibMoebelstueckZurueck(' '));
+//    	}
+//    	else{
+//    		zeigeInformationsfensterAn("Bisher wurde kein Moebelhaus aufgenommen!");
+//    	}
+//    }    
 		  
     
 
@@ -230,5 +247,6 @@ public class MoebelhausView {
 	public void setTxtmaterial(TextField txtmaterial) {
 		this.txtmaterial = txtmaterial;
 	}
+
 
 }
